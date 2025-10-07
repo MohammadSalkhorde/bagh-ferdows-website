@@ -1,0 +1,37 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}
+راهنمای خرید بلیت
+{% endblock my_title %}
+
+{% block main %}
+<link rel="stylesheet" href="{% static "css/introduction/ticket.css" %}">
+
+    <div class="about-ticket">
+        <h1>راهنمای خرید بلیت : </h1>
+        <h3>هر بلیت شامل : </h3>
+        <p>کد بلیت، نوع گروه بازدید کننده، و قیمت است</p>
+
+        <h3>انواع گروه بازدید کننده : </h3>
+        {% for i in group %}
+            <p>{{i}}</p>
+        {% endfor %}
+
+        <h3>قیمت بلیت برای هر مکان : </h3>
+        <p>قیمت بلیت برای هر مکان و با توجه به نوع گروه بازدید کننده متفاوت است</p>
+    </div>
+    
+        <div class="tickets-container">
+            {% for i in ticket %}
+                <div class="ticket">
+                    <h1>کد بلیت : {{i.id}}</h1>
+                    <h3>مکان بازدید : {{i.place_code.title}}</h3>
+                    <h3>نوع گروه بازدید کننده : {{i.visitor_Group_code}}</h3>
+                    <h3>قیمت بلیت : {{i.price}}</h3>
+                </div>
+            {% endfor %}
+        </div>
+        
+{% endblock main %}
+

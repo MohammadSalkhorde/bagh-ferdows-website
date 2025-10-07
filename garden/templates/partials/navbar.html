@@ -1,0 +1,82 @@
+{% load static %}
+<link rel="stylesheet" href="{% static "css/partials/navbar.css" %}">
+
+<nav class="main-nav">
+    <a href="{% url 'main:index' %}">صفحه اصلی</a>
+    <a href="{% url 'garden:introducion' %}">معرفی باغ</a>
+    <a href="#">گالری</a>
+    <a href="{% url "memory:index" %}">خاطرات بازدید</a>
+    {% if user.is_authenticated %}
+        <a href="{% url "memory:addmemory" %}">درج خاطره</a>
+    {% else %}
+        <a href="{% url "account:login" %}" onmouseover="showTooltip1(event)" onmouseout="hideTooltip1()">درج خاطره</a>
+    {% endif %}
+    <div class="dropdown">
+        <a href="#" class="dropbtn dropbtn-special">آموزش و پژوهش <span class="arrow">&#9660;</span></a> 
+        <div class="dropdown-content">
+            <a href="{% url 'blog:index' %}">مقاله</a>
+            <hr> 
+            <a href="{% url "workshop:index" %}">کارگاه</a>
+        </div>
+    </div>
+    <a href="{% url 'garden:contact' %}">تماس با ما</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'account:logout' %}" class='red-back'>خروج</a>
+        {% else %}
+        <a href="{% url 'account:login' %}" class='blue-back'>ورود</a>
+        <a href="{% url 'account:register' %}" class='green-back'>ثبت نام</a>
+    {% endif %}
+    <div class='search-box'>
+        <form action="/search/" mehtod='get'>
+            <input type="text" name="search" id="">
+            <button type="submit">جستجو</button>
+        
+        </form>
+    </div>
+</nav>
+
+<div id="tooltip1" class="tooltip1">برای درج خاطره اول باید وارد حساب کاربری خود بشید.</div>
+
+<script>
+    function showTooltip1(event) {
+        var tooltip = document.getElementById("tooltip1");
+        tooltip.style.display = "block";
+        tooltip.style.left = event.pageX + 10 + "px";
+        tooltip.style.top = event.pageY + 10 + "px";
+    }
+
+    function hideTooltip1() {
+        var tooltip = document.getElementById("tooltip1");
+        tooltip.style.display = "none";
+    }
+
+    document.addEventListener('mousemove', function(event) {
+        var tooltip = document.getElementById("tooltip1");
+        if (tooltip.style.display === "block") {
+            tooltip.style.left = event.pageX + 10 + "px";
+            tooltip.style.top = event.pageY + 10 + "px";
+        }
+    });
+</script>
+
+<style>
+    .tooltip1 {
+        position: absolute;
+        display: none;
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        animation: fadeIn2 0.6s ease-in-out;
+        margin: 20px 0;
+    }
+    
+    @keyframes fadeIn2 {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+</style>

@@ -1,0 +1,108 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}
+خاطره ها
+{% endblock my_title %}
+
+{% block main %}
+    <link rel="stylesheet" href="{% static "css/memory/index.css" %}">
+    
+    <div class="memories-container">
+        {% for i in memories %}
+            <div class="memory-card">
+                <img src="{{ media }}/{{ i.photo }}" alt="{{ i.title }}" class='img'>
+                <h1>
+                    <span>عنوان خاطره : </span>
+                    <span>{{ i.title }}</span>
+                </h1>
+                <hr>
+                <p>
+                    <span>متن خاطره : </span>
+                    <span>{{ i.text }}</span>
+                </p>
+                <hr>
+                <p class='other-photo-title'>
+                    <i class="fas fa-arrow-down custom-icon"></i>
+                    عکس های دیگر
+                    <i class="fas fa-arrow-down custom-icon"></i>
+                </p>
+                {% if i.memory_gallery.all %}
+                    <div class="gallery">
+                        {% for photo in i.memory_gallery.all %}
+                                <img src="{{ media }}/{{ photo.photo }}" alt="{{ i.title }}" class='other-photo'>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class='error-message'>هیچ عکسی وجود ندارد</p>
+                {% endif %}
+                <hr class="hr-for-photo">
+                <p>
+                    <span>تاریخ خاطره : </span>
+                    <span>{{ i.memory_date }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span>ثبت شده توسط : </span>
+                    <span>{{ i.user }}</span>
+                </p>
+                
+                <span class="heart" data-id="{{ i.id }}" onclick="toggleLike({{ i.id }})">
+                    {% if i.id in list_memory_liked_id %}
+                        ❤️
+                    {% else %}
+                        🤍
+                    {% endif %}
+                </span>  
+
+                {% comment %} برای اپدیت کردن خاطره  {% endcomment %}
+                
+                {% comment %} {% if user == i.user %}              
+                <a href="{% url "memory:update" i.id %}" class='update'>ویرایش</a>
+                {% endif %} {% endcomment %}
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <script>
+      
+        function toggleLike(id) {
+            const heart = $('.heart[data-id="' + id + '"]');
+            
+            if (heart.html() === '❤️') {
+               
+                removeLike(id);
+            } else {
+                
+                like(id);
+            }
+        }
+
+        function like(id) {
+            $.ajax({
+                type: 'GET',
+                url: "{% url 'memory:like' %}",
+                data: { memory: id },
+                success: function() {
+                   
+                    $('.heart[data-id="' + id + '"]').html('❤️');
+                }
+            });
+        }
+
+        function removeLike(id) {
+            $.ajax({
+                type: 'GET',
+                url: "{% url 'memory:removelike' %}",
+                data: { memory: id },
+                success: function() {
+                  
+                    $('.heart[data-id="' + id + '"]').html('🤍');
+                }
+            });
+        }
+
+    </script>
+
+{% endblock main %}

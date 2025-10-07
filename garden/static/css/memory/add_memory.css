@@ -1,0 +1,122 @@
+.form-box {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 10px auto; 
+    margin-bottom: 0;
+    text-align: right;
+    vertical-align: top;
+    width: 28%;
+    float: right; /* برای راست چین کردن */
+    opacity: 0;
+    transform: translateY(-130px);
+    animation: fadeIn 1s forwards;
+}
+
+.form-box p {
+    opacity: 0;
+    transform: translateY(-25px);
+    animation: fadeIn 4s forwards;
+}
+
+      
+.form-box form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-130px);
+    animation: fadeIn 1s forwards;
+}
+.form-box button {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.form-box button:hover {
+    background-color: #ff4500;
+}
+
+.error-message {
+    background-color: #f44336; /* رنگ قرمز */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInOut 4s forwards;
+    margin: 10px auto; /* برای مرکز قرار دادن */
+    width: 25%; /* عرض پیام */
+    transform: translateX(0); /* از چپ و راست جابجا نشود */
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+textarea{
+    width: 300px;
+    margin-right: 30px;
+}
+input{
+    width: 300px;
+    margin-right: 30px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+label{
+    margin-left: 50px;
+}
+
+.other-photo {
+    border-radius: 15px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+    margin: auto; /* برای مرکز کردن */
+    margin-top: 10px;
+}
+
+.other-photo:hover, .article-image:hover {
+    transform: scale(1.1);
+}
+
+.other-photo-title {
+    text-align: center;
+    color: darkslategray;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    width: 100%;
+}
+
+.other-photo-title span{
+    color: red;
+}
+
+.warning {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 0;
+}
+
+

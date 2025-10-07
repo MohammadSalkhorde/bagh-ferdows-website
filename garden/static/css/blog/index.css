@@ -1,0 +1,64 @@
+.articles-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* تغییر به center */
+    margin: 0;
+    opacity: 0;
+    transform: translateY(-130px);
+    animation: fadeIn 1s forwards;
+    align-items: start;
+}
+.article-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 10px; /* فاصله بین کارت‌ها */
+    text-align: right;
+    vertical-align: top;
+    max-width: 25%; /* عرض کارت */
+    flex: 1 0 30%; /* تنظیم اندازه */
+}
+
+.img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.img:hover {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.more-article {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 80%;
+    margin-top: 20px;
+}
+
+.more-article:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    color: white;
+}
+
+.more-article:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+

@@ -1,0 +1,50 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}
+ویرایش خاطره
+{% endblock my_title %}
+
+{% comment %} این بخش غیرفعاله {% endcomment %}
+
+{% block main %}
+    <link rel="stylesheet" href="{% static "css/memory/add_memory.css" %}">
+
+    <div class='form-box'>
+        <form action="" method='post' enctype="multipart/form-data">
+            {% csrf_token %}
+            <p class='warning'>
+                ! توجه ! <br>
+                <span>تمام اطلاعاتی که قبلا پر کرده اید در سیستم ثبت است و فقط درصورت نیاز به تغییر آن را تغییر دهید.</span>
+            </p>
+            <p>
+                <label for="id_title">عنوان خاطره:</label>
+                <input type="text" value="{{ memory.title }}" name='title' id="id_title">
+            </p>
+            <p>
+                <label for="id_text">متن خاطره:</label>
+                <textarea name="text" id="id_text" rows="15">{{ memory.text }}</textarea>
+            </p>
+            <p>
+                <label for="id_photo">تصویر اصلی:</label>
+                <input type="file" name="photo" accept="image/*" id="id_photo" value="{{ memory.photo }}">
+            </p>
+            <p>
+                <label for="id_memory_date">تاریخ خاطره:</label>
+                <input type="datetime-local" name="memory_date" value="{{ memory.memory_date }}" id="id_memory_date">
+            </p>
+            <p class='other-photo-title'>
+                <i class="fas fa-arrow-down custom-icon"></i>
+                    تصاویر های دیگر
+                    <span>(اختیاری)</span>
+                <i class="fas fa-arrow-down custom-icon"></i>
+            </p>
+            {{gallery.management_form}}
+            {% for form1 in gallery %}
+                {{form1}}
+            {% endfor %}
+            <button type="submit">ثبت</button>
+        </form>
+    </div>
+{% endblock main %}
+

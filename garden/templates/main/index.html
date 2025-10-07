@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}
+صفحه اصلی
+{% endblock my_title %}
+
+{% block main %}
+    <link rel="stylesheet" href="{% static "css/main_app/index.css" %}">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="{{ message.tags }}-message">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="about">
+
+        <h1>توضیحات : </h1>
+        
+        <h3>معرفی باغ : </h3>
+        <p>بخش های باغ، مسیر بازدید، قوانین باغ</p>
+
+        <h3>گالری : </h3>
+        <p>تمام تصاویر های مربوط به مکان های باغ</p>
+
+        <h3>خاطرات بازدید : </h3>
+        <p>خاطرات بازدید کنندگان</p>
+        
+        <h3>آموزش و پژوهش : </h3>
+        <p>کارگاه ها و مقاله های آموزشی و پژوهشی</p>
+        
+        <h3>تماس با ما : </h3>
+        <p>اطلاعات تماس، ارسال پیام به پشتیبانی</p>
+    </div>
+
+{% endblock  %}

@@ -1,0 +1,52 @@
+.about {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 10px auto; /* برای مرکز قرار دادن */
+    text-align: right;
+    vertical-align: top;
+    width: 25%;
+    float: right; /* برای راست چین کردن */
+    opacity: 0;
+    transform: translateY(-130px);
+    animation: fadeIn 1s forwards;
+}
+
+.about h3 {
+    margin-top: 5px; /* فاصله بالا */
+    margin-bottom: 5px; /* فاصله پایین */
+}
+h3 {
+    margin-right: 35px;
+}
+.about p {
+    margin-right: 70px;
+}
+
+.success-message {
+    background-color: #4CAF50; /* رنگ سبز */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInOut 4s forwards;
+    margin: 10px auto; /* برای مرکز قرار دادن */
+    width: 25%; /* عرض پیام */
+    transform: translateX(0); /* از چپ و راست جابجا نشود */
+}
+
+
+/* انیمیشن */
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

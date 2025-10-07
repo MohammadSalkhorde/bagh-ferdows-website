@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}
+گزارش کارگاه
+{% endblock my_title %}
+{% block main %}
+    <link rel="stylesheet" href="{% static "css/workshop/report_text.css" %}">
+
+        <div class="report">
+            <div class="text-content">
+                <h1>گزارش {{workshop.title}}</h1>
+                <hr>
+                <p>{{workshop.report_text}}</p>
+                <hr>
+                <p>
+                    <span>تعداد بازدید : </span>
+                    <span>{{ workshop.view_number }}</span>
+                </p>
+                <hr>
+                <p class='other-photo-title'>
+                    <i class="fas fa-arrow-down custom-icon"></i>
+                        عکس های کارگاه
+                    <i class="fas fa-arrow-down custom-icon"></i>
+                </p>
+                <div class="gallery">
+                    {% if gallery %}
+                        {% for i in gallery %}
+                            <img src="{{media}}{{i.photo}}" alt="{{i.workshop}}" class='other-photo'>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% if message %}
+                    <p class='error-message'>{{message}}</p>
+                {% endif %}
+            </div>
+        </div>
+{% endblock main %}

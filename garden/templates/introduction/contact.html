@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}
+تماس با ما
+{% endblock my_title %}
+
+{% block main %}
+    <link rel="stylesheet" href="{% static "css/introduction/contact.css" %}">
+    
+    <div class="contact-info">
+        <h1>اطلاعات تماس</h1>
+        <p><a href="m.salkhorde444@gmail.com">m.salkhorde444@gmail.com</a> :ایمیل</p>
+        <p>شماره تلفن: <a href="tel:+989011186988">+989011186988</a></p>
+        <p>آدرس: استان هرمزگان، شهرستان بستک</p>
+    </div>
+    <div class="form-box">
+        <form method="post" id="contact">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">ارسال</button>
+        </form>
+    </div>
+    <div id="message-box" style="display:none;"></div>
+    
+    <script type="text/javascript" src="{% static 'js/introduction/contact.js' %}"></script>
+    <script type="text/javascript"> var contactUrl = "{% url 'garden:contact' %}"; </script>
+{% endblock main %}
+
+

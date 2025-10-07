@@ -1,0 +1,37 @@
+{% extends "main.html" %}
+{% load static %}
+{% block my_title %}
+درج خاطره
+{% endblock my_title %}
+
+{% block main %}
+    <link rel="stylesheet" href="{% static "css/memory/add_memory.css" %}">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="{{ message.tags }}-message">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="form-box">
+        <form method="post" id="memory" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p class='other-photo-title'>
+                <i class="fas fa-arrow-down custom-icon"></i>
+                    تصاویر های دیگر
+                    <span>(اختیاری)</span>
+                <i class="fas fa-arrow-down custom-icon"></i>
+            </p>
+            {{gallery.management_form}}
+            {% for form in gallery %}
+                {{form}}
+            {% endfor %}
+            <button type="submit">ثبت</button>
+        </form>
+    </div>
+
+{% endblock main %}
+

@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}
+صفحه {{place.title}}
+{% endblock my_title %}
+
+{% block main %}
+    <link rel="stylesheet" href="{% static "css/introduction/places.css" %}">
+
+
+        <div class="place">
+            <div class="text-content">
+                <img src="{{media}}/{{place.photo}}" alt="{{place.title}}" class="img">
+                <h1>{{place.title}}</h1>
+                <p>
+                    <span style="font-weight: bold;">روز بازدید : </span>
+                    <span>{{place.visiting_day}}</span>
+                </p>
+                <p>
+                    <span style="font-weight: bold;">ساعت بازدید : </span>
+                    <span>{{place.visiting_hours}}</span>
+                </p>
+                <hr>
+                <p>
+                    <span style="font-weight: bold; color:#ff6347;">قوانین و مقررات مکان</span>
+                    <br>
+                    <span>{{place.rules}}</span>
+                </p>
+                <hr>
+                <p>
+                    <span style="font-weight: bold; color:#ff6347;">اطلاعات بیشتر</span>
+                    <br>
+                    <span>{{place.more}}</span>
+                </p>
+            </div>
+        </div>
+
+
+{% endblock main %}

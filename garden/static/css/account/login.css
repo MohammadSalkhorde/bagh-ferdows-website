@@ -1,0 +1,129 @@
+.error-message {
+    background-color: #f44336; /* رنگ قرمز */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInOut 4s forwards;
+    margin: 10px auto; /* برای مرکز قرار دادن */
+    width: 25%; /* عرض پیام */
+    transform: translateX(0); /* از چپ و راست جابجا نشود */
+}
+
+
+/* انیمیشن */
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+.checkmark {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+
+.form-box {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 10px auto; 
+    text-align: right;
+    vertical-align: top;
+    width: 25%;
+    float: right; /* برای راست چین کردن */
+    opacity: 0;
+    transform: translateY(-130px);
+    animation: fadeIn 1s forwards;
+    margin-bottom: 100px;
+}
+
+.form-box p {
+    opacity: 0;
+    transform: translateY(-25px);
+    animation: fadeIn 4s forwards;
+}
+
+      
+.form-box form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-130px);
+    animation: fadeIn 1s forwards;
+}
+
+
+.login {
+    display: inline-block;
+    background-color: #ff6347;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 80%;
+    margin-top: 20px;
+}
+
+.login:hover {
+    background-color: #ff4500;
+    transform: scale(1.05);
+    color: white;
+}
+
+.login:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+    background-color: #ff6347;
+}
+
+
+.register {
+    display: inline-block;
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 80%;
+}
+
+.register:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    color: white;
+}
+
+.register:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+    background-color: #0056b3;
+}
+
+.is_register{
+    margin-top: 10px;
+    margin-bottom: 2px;
+    font: bold;
+    align-self: flex-start;
+    margin-right: 20px;
+}

@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}
+قوانین و مقررات
+{% endblock my_title %}
+
+{% block main %}
+    <link rel="stylesheet" href="{% static "css/introduction/rules.css" %}">
+
+            {% for i in place %}
+                <div class="place">
+                    <img src="{{media}}/{{i.photo}}">
+                    <h1 style="color: #ff6347;">{{i.title}}</h1>
+                    <h3>ساعت بازدید : {{i.visiting_hours}}</h3>
+                    <h3>روز بازدید : {{i.visiting_day}}</h3>
+                    <hr>
+                    <p style="color: #ff6347; font-weight: bold;">{{i.rules}}</p>
+                    <hr>
+                    <h3>{{i.more}}</h3>
+                    <div>
+                        <span style="font-weight: bold;">تاریخ ثبت مکان : </span>
+                        <span style="color: #ff6347; font-weight: bold;">{{i.place_registration_date}}</span>
+                    </div>
+                    <h1>
+                        <a href="{% url "garden:ticket" %}" class='ticket'>بهای بلیت</a>
+                    </h1>
+                </div>
+            {% endfor %}
+
+{% endblock main %}

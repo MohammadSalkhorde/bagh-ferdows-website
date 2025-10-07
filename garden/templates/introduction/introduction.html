@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}
+معرفی باغ
+{% endblock my_title %}
+
+{% block main %}
+        <link rel="stylesheet" href="{% static "css/introduction/introduction.css" %}">
+        
+        <div class="introduction-items">
+            <h1>معرفی باغ</h1>
+            <p>
+                <a href="{% url "garden:history" %}">■ تاریخچه</a>
+            </p>
+            <h1>بخش های باغ</h1>
+            <p>
+                <select id="menu" name="menu" onchange="goToPage(this)">
+                    <option value="">○ صفحه بخش ها</option>
+                    <option value="{% url "garden:place" title_place='محوطه' %}">○ صفحه محوطه</option>
+                    <option value="{% url "garden:place" title_place='موزه-سینما' %}">○ صفحه موزه سینما</option>
+                </select>
+            </p>
+            <h1>مسیر بازدید</h1>
+            <p>
+                <a href="{% url "garden:pdf" %}">■ صفحه دانلود</a>
+            </p>
+            <h1>برنامه و قوانین باغ</h1>
+            <p>
+                <a href="{% url "garden:rules" %}">○ صفحه اعلام برنامه</a>
+            </p>
+            <h1>تماس با ما</h1>
+            <p>
+                <a href="{% url "garden:contact" %}">■ صفحه تماس با ما</a>
+            </p>
+        </div>
+
+        <script src="{% static "js/introduction/introduction.js" %}"></script>
+{% endblock  %}

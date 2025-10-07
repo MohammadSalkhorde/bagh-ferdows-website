@@ -1,0 +1,115 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}
+کارگاه ها
+{% endblock my_title %}
+
+{% block main %}
+    <link rel="stylesheet" href="{% static 'css/workshop/index.css' %}">
+
+    <script>
+        function showTooltip(event) {
+            var tooltip = document.getElementById("tooltip");
+            tooltip.style.display = "block";
+            tooltip.style.left = event.pageX + 10 + "px";
+            tooltip.style.top = event.pageY + 10 + "px";
+        }
+    
+        function hideTooltip() {
+            var tooltip = document.getElementById("tooltip");
+            tooltip.style.display = "none";
+        }
+    
+        document.addEventListener('mousemove', function(event) {
+            var tooltip = document.getElementById("tooltip");
+            if (tooltip.style.display === "block") {
+                tooltip.style.left = event.pageX + 10 + "px";
+                tooltip.style.top = event.pageY + 10 + "px";
+            }
+        });
+    </script>
+
+    <div class="workshops-container">
+        {% for workshop in workshops %}
+        <div class="workshops">
+                <img src="{{ media }}/{{ workshop.photo }}" alt="{{workshop.title}}" class='img-50'>
+                <h1>
+                    <span>عنوان کارگاه : </span>
+                    <span>{{ workshop.title }}</span>
+                </h1>
+                <hr>
+                <p>
+                    <span>تاریخ و زمان برگزاری : </span>
+                    <span>{{ workshop.date }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span>مکان برگزاری : </span>
+                    <span>{{ workshop.place }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span>مدرس : </span>
+                    <span>{{ workshop.teacher }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span>اطلاعات : </span>
+                    <span>{{ workshop.information }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span>شرایط ثبت نام : </span>
+                    <span>{{ workshop.registeration }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span>وضعیت کارگاه : </span>
+                    <span class="{% if workshop.status.status_code == 3 %}status-true{% else %}status-false{% endif %}">{{ workshop.status }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span>وضعیت فعال/غیرفعال :</span>
+                    <span class="{% if workshop.is_active %}status-true{% else %}status-false{% endif %}">
+                        {% if workshop.is_active %}
+                            ✔
+                        {% else %}
+                            ✖
+                        {% endif %}
+                    </span>
+                </p>
+                <hr>
+                <a href="{% if workshop.status.status_code == 3 %}{% url "workshop:report_text" workshop.id %}{% else %}#{% endif %}" class="{% if workshop.status.status_code == 3 %}show-report{% else %}no-report{% endif %}" {% if workshop.status.status_code != 3 %}onmouseover="showTooltip(event)" onmouseout="hideTooltip()"{% endif %}>مشاهده گزارش کارگاه</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="tooltip" class="tooltip">این گزارش موجود نیست</div>
+
+    <div class="pagination-container">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">قبلی</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">قبلی</span></li>
+                {% endif %}
+                {% for i in page_obj.paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link">{{ i }}</span> 
+                        </li>
+                    {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">بعدی</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">بعدی</span></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+{% endblock main %}

@@ -1,0 +1,58 @@
+.place{
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 10px auto; /* برای مرکز قرار دادن */
+    text-align: center;
+    vertical-align: top;
+    width: 50%;
+    float: right; /* برای راست چین کردن */
+    opacity: 0;
+    transform: translateY(-130px);
+    animation: fadeIn 1s forwards;
+}
+
+
+img {
+    display: block;
+    width: 500px;
+    height: 200px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+img:hover {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+
+.ticket {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 60%;
+    margin-top: 20px;
+}
+
+.ticket:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    color: white;
+}
+
+.ticket:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}

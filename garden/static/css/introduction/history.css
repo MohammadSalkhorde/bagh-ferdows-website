@@ -1,0 +1,30 @@
+.slider-vertical {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 10px auto; /* برای مرکز قرار دادن */
+    text-align: right;
+    vertical-align: top;
+    width: 40%;
+    float: right; /* برای راست چین کردن */
+    opacity: 0;
+    transform: translateY(-130px);
+    animation: fadeIn 1s forwards;
+}
+
+.slide-item-vertical {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 10px auto; /* برای مرکز قرار دادن */
+    text-align: right;
+    vertical-align: top;
+    width: 50%;
+    float: right; /* برای راست چین کردن */
+    opacity: 0;
+    transform: translateY(-130px);
+    animation: fadeIn 1s forwards;
+    
+}

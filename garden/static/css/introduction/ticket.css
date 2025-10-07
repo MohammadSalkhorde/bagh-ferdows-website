@@ -1,0 +1,54 @@
+.ticket {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 10px; /* فاصله بین تیکت‌ها */
+    text-align: right;
+    vertical-align: top;
+    width: 30%; /* عرض 30% برای هر تیکت */
+    opacity: 0;
+    transform: translateY(-130px);
+    animation: fadeIn 1s forwards;
+}
+
+.tickets-container {
+    display: flex;
+    flex-wrap: wrap; /* اجازه می‌دهد که تیکت‌ها به خط بعدی بروند */
+    justify-content: space-around; /* فاصله بین تیکت‌ها به‌گونه‌ای باشد که هم سمت چپ و راست چسبیده باشد */
+}
+
+@media (max-width: 768px) { /* برای دستگاه‌های کوچک‌تر */
+    .ticket {
+        width: 100%; /* در دستگاه‌های کوچک، تیکت‌ها تمام عرض را می‌گیرند */
+    }
+}
+.ticket h1 {
+    color: #000000;
+    font-size: 25px; /* Increased font size */
+}
+
+
+.about-ticket {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 10px auto; /* برای مرکز قرار دادن */
+    text-align: right;
+    vertical-align: top;
+    width: 25%;
+    float: right; /* برای راست چین کردن */
+    opacity: 0;
+    transform: translateY(-130px);
+    animation: fadeIn 1s forwards;
+}
+
+.about-ticket h3 {
+    margin-right: 35px;
+    margin-top: 5px; /* فاصله بالا */
+    margin-bottom: 5px; /* فاصله پایین */
+}
+.about-ticket p {
+    margin-right: 70px;
+}

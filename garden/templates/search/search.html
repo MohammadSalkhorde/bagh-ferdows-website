@@ -1,0 +1,246 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}
+جستجو
+{% endblock my_title %}
+
+
+{% block main %}
+    <link rel="stylesheet" href="{% static "css/memory/index.css" %}">
+    <link rel="stylesheet" href="{% static 'css/workshop/index.css' %}">
+    <link rel="stylesheet" href="{% static "css/blog/index.css" %}">
+
+    <style>
+        .hr-style {
+          border: none; 
+          height: 4px; 
+          background-color: black;
+          margin: 20px 0; 
+          border-radius: 5px; 
+          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
+        }
+    </style>
+    {% if memories %}
+        <div class="memories-container">
+            {% for i in memories %}
+                <div class="memory-card">
+                    <img src="{{ media }}/{{ i.photo }}" alt="{{ i.title }}" class='img'>
+                    <h1>
+                        <span>عنوان خاطره : </span>
+                        <span>{{ i.title }}</span>
+                    </h1>
+                    <hr>
+                    <p>
+                        <span>متن خاطره : </span>
+                        <span>{{ i.text }}</span>
+                    </p>
+                    <hr>
+                    <p class='other-photo-title'>
+                        <i class="fas fa-arrow-down custom-icon"></i>
+                        عکس های دیگر
+                        <i class="fas fa-arrow-down custom-icon"></i>
+                    </p>
+                    {% if i.memory_gallery.all %}
+                        <div class="gallery">
+                            {% for photo in i.memory_gallery.all %}
+                                    <img src="{{ media }}/{{ photo.photo }}" alt="{{ i.title }}" class='other-photo'>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class='error-message'>هیچ عکسی وجود ندارد</p>
+                    {% endif %}
+                    <hr class="hr-for-photo">
+                    <p>
+                        <span>تاریخ خاطره : </span>
+                        <span>{{ i.memory_date }}</span>
+                    </p>
+                    <hr>
+                    <p>
+                        <span>ثبت شده توسط : </span>
+                        <span>{{ i.user }}</span>
+                    </p>
+                    
+                    <span class="heart" data-id="{{ i.id }}" onclick="toggleLike({{ i.id }})">
+                        {% if i.id in list_memory_liked_id %}
+                            ❤️
+                        {% else %}
+                            🤍
+                        {% endif %}
+                    </span>                
+                </div>
+            {% endfor %}
+        </div>
+        <hr class="hr-style">
+        {% endif %}
+        {% if workshops %}
+            <div class="workshops-container">
+                {% for workshop in workshops %}
+                <div class="workshops">
+                    <div class="text-content">
+                        <img src="{{ media }}/{{ workshop.photo }}" alt="workshop.title" class='img-50'>
+                        <h1>
+                            <span>عنوان کارگاه : </span>
+                            <span>{{ workshop.title }}</span>
+                        </h1>
+                        <hr>
+                        <p>
+                            <span>تاریخ و زمان برگزاری : </span>
+                            <span>{{ workshop.date }}</span>
+                        </p>
+                        <hr>
+                        <p>
+                            <span>مکان برگزاری : </span>
+                            <span>{{ workshop.place }}</span>
+                        </p>
+                        <hr>
+                        <p>
+                            <span>مدرس : </span>
+                            <span>{{ workshop.teacher }}</span>
+                        </p>
+                        <hr>
+                        <p>
+                            <span>اطلاعات : </span>
+                            <span>{{ workshop.information }}</span>
+                        </p>
+                        <hr>
+                        <p>
+                            <span>شرایط ثبت نام : </span>
+                            <span>{{ workshop.registeration }}</span>
+                        </p>
+                        <hr>
+                        <p>
+                            <span>وضعیت کارگاه : </span>
+                            <span class="{% if workshop.status.status_code == 3 %}status-true{% else %}status-false{% endif %}">{{ workshop.status }}</span>
+                        </p>
+                        <hr>
+                        <p>
+                            <span>وضعیت فعال/غیرفعال :</span>
+                            <span class="{% if workshop.is_active %}status-true{% else %}status-false{% endif %}">
+                                {% if workshop.is_active %}
+                                    ✔
+                                {% else %}
+                                    ✖
+                                {% endif %}
+                            </span>
+                        </p>
+                        <a href="{% if workshop.status.status_code == 3 %}{% url "workshop:report_text" workshop.id %}{% else %}#{% endif %}" class="{% if workshop.status.status_code == 3 %}show-report{% else %}no-report{% endif %}" {% if workshop.status.status_code != 3 %}onmouseover="showTooltip(event)" onmouseout="hideTooltip()"{% endif %}>مشاهده گزارش کارگاه</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        
+            <div id="tooltip" class="tooltip">این گزارش موجود نیست</div>
+            <hr class="hr-style">
+    {% endif %}
+
+    
+    {% if articles %}
+        <div class="articles-container">
+        {% for i in articles %}
+            <div class="article-card">
+                <img src="{{ media }}/{{ i.photo }}" alt="{{ i.title }}" class='img'>
+                <h1>
+                    <span>عنوان مقاله : </span>
+                    <span>{{ i.title }}</span>
+                </h1>
+                <hr>
+                <p>
+                    <span>متن خلاصه : </span>
+                    <span>{{ i.short_text }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span>نویسنده ها : </span>
+                    {% for author in i.author.all %}
+                        {{ author.name }} {{author.family}}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <hr>
+                <p>
+                    <span>گروه مقاله : </span>
+                    <span>{{ i.article_group }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span>تاریخ به روزرسانی : </span>
+                    <span>{{ i.update_date }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span>تعداد بازدید : </span>
+                    <span>{{ i.visit }}</span>
+                </p>
+                <hr>
+                <a href="{% url "blog:more" i.slug i.id %}" class='more-article'>جزئیات بیشتر</a>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <script>
+      
+        function toggleLike(id) {
+            const heart = $('.heart[data-id="' + id + '"]');
+            
+            if (heart.html() === '❤️') {
+                // اگر قلب لایک شده است، آن را آنلایک کنیم
+                removeLike(id);
+            } else {
+                // اگر قلب لایک نشده است، آن را لایک کنیم
+                like(id);
+            }
+        }
+
+        function like(id) {
+            $.ajax({
+                type: 'GET',
+                url: "{% url 'memory:like' %}",
+                data: { memory: id },
+                success: function() {
+                    // تغییر علامت قلب در صفحه
+                    $('.heart[data-id="' + id + '"]').html('❤️');
+                }
+            });
+        }
+
+        function removeLike(id) {
+            $.ajax({
+                type: 'GET',
+                url: "{% url 'memory:removelike' %}",
+                data: { memory: id },
+                success: function() {
+                    // تغییر علامت قلب در صفحه
+                    $('.heart[data-id="' + id + '"]').html('🤍');
+                }
+            });
+        }
+
+
+
+
+
+
+
+        function showTooltip(event) {
+            var tooltip = document.getElementById("tooltip");
+            tooltip.style.display = "block";
+            tooltip.style.left = event.pageX + 10 + "px";
+            tooltip.style.top = event.pageY + 10 + "px";
+        }
+    
+        function hideTooltip() {
+            var tooltip = document.getElementById("tooltip");
+            tooltip.style.display = "none";
+        }
+    
+        document.addEventListener('mousemove', function(event) {
+            var tooltip = document.getElementById("tooltip");
+            if (tooltip.style.display === "block") {
+                tooltip.style.left = event.pageX + 10 + "px";
+                tooltip.style.top = event.pageY + 10 + "px";
+            }
+        });
+
+    </script>
+{% endblock main %}
+

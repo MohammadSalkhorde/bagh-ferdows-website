@@ -1,0 +1,78 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}
+مقاله ها
+{% endblock my_title %}
+
+{% block main %}
+    <link rel="stylesheet" href="{% static "css/blog/index.css" %}">
+
+     <div class="articles-container">
+        {% for i in page_obj %}
+            <div class="article-card">
+                <img src="{{ media }}/{{ i.photo }}" alt="{{ i.title }}" class='img'>
+                <h1>
+                    <span>عنوان مقاله : </span>
+                    <span>{{ i.title }}</span>
+                </h1>
+                <hr>
+                <p>
+                    <span>متن خلاصه : </span>
+                    <span>{{ i.short_text }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span>نویسنده ها : </span>
+                    {% for author in i.author.all %}
+                        {{ author.name }} {{author.family}}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <hr>
+                <p>
+                    <span>گروه مقاله : </span>
+                    <span>{{ i.article_group }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span>تاریخ به روزرسانی : </span>
+                    <span>{{ i.update_date }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span>تعداد بازدید : </span>
+                    <span>{{ i.visit }}</span>
+                </p>
+                <hr>
+                <a href="{% url "blog:more" i.slug i.id %}" class='more-article'>جزئیات بیشتر</a>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div class="pagination-container">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">قبلی</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">قبلی</span></li>
+                {% endif %}
+                {% for i in page_obj.paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link">{{ i }}</span> <!-- بدون 'current' -->
+                        </li>
+                    {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">بعدی</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">بعدی</span></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    
+{% endblock main %}

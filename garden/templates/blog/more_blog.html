@@ -1,0 +1,87 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}
+جزئیات مقاله
+{% endblock my_title %}
+
+{% block main %}
+
+    <link rel="stylesheet" href="{% static "css/blog/more_blog.css" %}">
+
+        <div class="article">
+            <div class="text-content">
+                <img src="{{ media }}/{{ blog.photo }}" alt="تصویر" class="article-image">
+                <h1>{{ blog.title }}</h1>
+                <p>
+                    <span class="title-span">متن خلاصه : </span>
+                    <span class="content-span">{{ blog.short_text }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span class="title-span">متن اصلی مقاله : </span>
+                    <span class="content-span">{{ blog.text }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span class="title-span">گروه مقاله : </span>
+                    <span class="content-span">{{ blog.article_group }}</span>
+                </p>
+                <p>
+                    <span class="title-span">نویسنده ها : </span>
+                    {% for author in blog.author.all %}
+                        <span class="content-span">{{ author.name }} {{ author.family }}{% if not forloop.last %}, {% endif %}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    <span class="title-span">تاریخ ثبت : </span>
+                    <span class="content-span">{{ blog.creation_date }}</span>
+                </p>
+                <p>
+                    <span class="title-span">تاریخ انتشار : </span>
+                    <span class="content-span">{{ blog.publication_date }}</span>
+                </p>
+                <p>
+                    <span class="title-span">تاریخ آخرین به روزرسانی : </span>
+                    <span class="content-span">{{ blog.update_date }}</span>
+                </p>
+                <p>
+                    <span class="title-span">وضعیت مقاله : </span>
+                    <span class="{% if blog.is_active %}status-true{% else %}status-false{% endif %}">
+                        {% if blog.is_active %}
+                            ✔
+                        {% else %}
+                            ✖
+                        {% endif %}
+                    </span>
+                </p>
+                <p>
+                    <span class="title-span">تعداد بازدید : </span>
+                    <span class="content-span">{{ blog.visit }}</span>
+                </p>
+                <hr>
+                <p>
+                    <span class="title-span">فایل پی دی اف مقاله : </span>
+                    <span>
+                        <a href="{% url "blog:pdf" blog.pdf_name %}" class="pdf">دانلود فایل</a>
+                    </span>
+                </p>
+                <hr>
+                <p class='other-photo-title'>
+                    <i class="fas fa-arrow-down custom-icon"></i>
+                        عکس های دیگر
+                    <i class="fas fa-arrow-down custom-icon"></i>
+                </p>
+                <div class="gallery">
+                    {% if gallery %}
+                        {% for i in gallery %}
+                            <img src="{{media}}{{i.photo_name}}" alt="{{i.article}}" class='other-photo'>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% if message %}
+                    <p class='error-message'>{{message}}</p>
+                {% endif %}
+            </div>
+        </div>
+{% endblock main %}

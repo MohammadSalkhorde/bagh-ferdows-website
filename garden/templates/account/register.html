@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block my_title %}ثبت نام{% endblock my_title %}
+{% block main %}
+    <link rel="stylesheet" href="{% static "css/account/register.css" %}">
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="{{ message.tags }}-message">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="form-box">
+        <form method="post" id="contact">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class='login'>ثبت نام</button>
+            <p class='is_login'>آیا از قبل حساب کاربری دارید؟</p>
+            <a href="{% url "account:login" %}" class='login'>ورود</a>
+        </form>
+    </div>
+{% endblock main %}
+

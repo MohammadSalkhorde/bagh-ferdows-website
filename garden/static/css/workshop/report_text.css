@@ -1,0 +1,83 @@
+.slider-vertical {
+    background-color: silver;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 2000px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    overflow-y: auto;
+    height: 450px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    bottom: 80px;
+    position: absolute;
+    opacity: 0;
+    transform: translateY(-130px);
+    animation: fadeIn 1s forwards;
+}
+.report{
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 10px auto; /* برای مرکز قرار دادن */
+    text-align: right;
+    vertical-align: top;
+    width: 50%;
+    float: right; /* برای راست چین کردن */
+    opacity: 0;
+    transform: translateY(-130px);
+    animation: fadeIn 1s forwards;
+}
+
+.slide-item-vertical {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    text-align: right;
+    vertical-align: top;
+    width: 89%;
+    
+}
+
+.error-message {
+    text-align: center;
+    color: rgb(204, 1, 1);
+    font-weight: bold;
+    background-color: #f0f0f0;
+
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* تنظیم برای سه ستون */
+    gap: 25px; /* فاصله بین تصاویر */
+}
+
+.other-photo {
+    border-radius: 15px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+    margin: auto; /* برای مرکز کردن */
+    margin-top: 10px;
+}
+
+.other-photo:hover, .article-image:hover {
+    transform: scale(1.1);
+}
+
+.other-photo-title {
+    text-align: center;
+    color: darkslategray;
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
