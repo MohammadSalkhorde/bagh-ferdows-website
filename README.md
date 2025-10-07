@@ -120,8 +120,7 @@ bagh-ferdows-website/
 │   ├── media/
 |   ├── gerden/
 │   └── templates/
-│   ├── manage.py
-│   └── utils.py
+│   └── manage.py
 │
 ├── venv/
 ├── README.md
