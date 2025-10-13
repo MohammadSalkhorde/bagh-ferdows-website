@@ -5,10 +5,7 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?logo=javascript)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-Bagh Ferdows Tehran Website is a **dynamic website showcasing the historical and cultural sites** of the Bagh Ferdows complex.
-Users can register, share their experiences, view others' stories, and purchase visit tickets.
-All content, including locations, visiting rules, and tickets, is **fully manageable via the Django admin panel**.
-The project is designed as a learning project and a foundation for production-ready applications.
+Bagh Ferdows Tehran Website is a **practice project focusing on backend development** for the historical and cultural sites of the Bagh Ferdows complex. The frontend is **basic and minimal**. Users can register, share experiences, view others' stories, and purchase visit tickets. All content is **fully manageable via the Django admin panel**.
 
 ---
 
@@ -18,7 +15,7 @@ The project is designed as a learning project and a foundation for production-re
 * User registration and authentication
 * Ticket booking and management
 * Experience sharing and viewing other users' stories
-* Responsive and interactive frontend with JavaScript
+* Basic frontend with minimal styling
 
 ---
 
@@ -27,7 +24,6 @@ The project is designed as a learning project and a foundation for production-re
 * **Backend:** Python, Django
 * **Frontend:** HTML, CSS, JavaScript
 * **Database:** MySQL
-* **APIs:** SMS authentication, optional payment gateway
 
 ---
 
@@ -35,8 +31,7 @@ The project is designed as a learning project and a foundation for production-re
 
 ### 👤 User Features
 
-* User registration & login with SMS verification
-* Profile management with profile picture
+* User registration & login
 * Share experiences and view other users' stories
 * Browse locations with visiting rules and hours
 
@@ -139,8 +134,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 💼 Contact & Portfolio
 
 Hi, I'm **Mohammad Salkhorde** 👋
-**Python / Django Backend Developer** — building dynamic websites and web applications.
-Open to **freelance** & **remote** opportunities.
+**Python / Django Backend Developer** — building dynamic websites and web applications. Open to **freelance** & **remote** opportunities.
 
 * **GitHub:** [https://github.com/MohammadSalkhorde](https://github.com/MohammadSalkhorde)
 * **LinkedIn:** [https://www.linkedin.com/in/mohammad-salkhorde-a13767385](https://www.linkedin.com/in/mohammad-salkhorde-a13767385)
